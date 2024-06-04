@@ -1,0 +1,107 @@
+.drawer-container {
+  width: 100%;
+  height: 100%;
+}
+
+.drawer-sidenav-content {
+  height: 100%;
+}
+
+.drawer-sidenav {
+  padding: 20px;
+}
+
+.card-menu-button {
+  width: 350px;
+  margin-bottom: 16px;
+}
+
+.div-logo {
+  width: 100%;
+  display: flex;
+}
+.img-logo{
+  height: 200px;
+  margin: auto;
+}
+.img-banner{
+  width: 30%;
+  margin: 16px;
+  height: 200px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.card-about-us {
+  margin: 16px;
+}
+
+.title-about-us {
+  margin: 16px;
+}
+
+.text-about-us {
+  font-family: Arial;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.text-margin-top {
+  margin-top: 16px;
+}
+
+.div-text {
+  display: flex;
+}
+
+.img-section {
+  width: 350px;
+  margin-left: 16px;
+  border-radius: 16px;
+}
+.card-item{
+  width: 95vw;
+  margin: 16px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+}
+.image{
+  width: 50vw;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 16px;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+.page-view{
+  display: flex;
+  flex-wrap: wrap;
+}
+.div-controls{
+  display: flex;
+}
+.btn-buy{
+  margin-left: auto;
+}
+.div-admin-controls{
+  display: grid;
+}
+.p-title{
+  font-size: 50px;
+  color:black;
+  font-weight: bold;
+  margin-top: 16px;
+  padding-left: 35%;
+  padding-right: 35%;
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+.p-description{
+  font-size: 24px;
+  font-style: italic;
+}
+.p-price{
+  font-weight: bold;
+}
+
