@@ -30,12 +30,12 @@ export class AddEditProductComponent implements OnChanges {
   name = new FormControl('', [Validators.required]);
   description = new FormControl('', [Validators.required]);
   price = new FormControl('', [Validators.required]);
-  size = new FormControl('', [Validators.required]);
   image1 = new FormControl('', [Validators.required]);
   image2 = new FormControl('', [Validators.required]);
   image3 = new FormControl('', [Validators.required]);
   image4 = new FormControl('', [Validators.required]);
   productType = new FormControl('', [Validators.required]);
+  productSize = new FormControl('', [Validators.required]);
   productGenre = new FormControl('', [Validators.required]);
 
   constructor(private productService: ProductService) {
@@ -48,12 +48,12 @@ export class AddEditProductComponent implements OnChanges {
       this.name = new FormControl(this.product.name, [Validators.required]);
       this.description = new FormControl(this.product.description, [Validators.required]);
       this.price = new FormControl(this.product.price, [Validators.required]);
-      this.size = new FormControl(this.product.size, [Validators.required]);
       this.image1 = new FormControl(this.product.image1, [Validators.required]);
       this.image2 = new FormControl(this.product.image2, [Validators.required]);
       this.image3 = new FormControl(this.product.image3, [Validators.required]);
       this.image4 = new FormControl(this.product.image4, [Validators.required]);
       this.productType = new FormControl(this.product.productType, [Validators.required]);
+      this.productSize = new FormControl(this.product.productSize, [Validators.required]);
       this.productGenre = new FormControl(this.product.productGenre, [Validators.required]);
     }
   }
@@ -71,12 +71,12 @@ export class AddEditProductComponent implements OnChanges {
       name: this.name.getRawValue()!,
       description: this.description.getRawValue()!,
       price: this.price.getRawValue()!,
-      size: this.size.getRawValue(),
       image1: this.image1.getRawValue()!,
       image2: this.image2.getRawValue()!,
       image3: this.image3.getRawValue()!,
       image4: this.image4.getRawValue()!,
       productType: this.productType.getRawValue()!,
+      productSize: this.productSize.getRawValue()!,
       productGenre: this.productGenre.getRawValue()!,
     };
     console.log();
@@ -96,12 +96,12 @@ export class AddEditProductComponent implements OnChanges {
     this.name = new FormControl('', [Validators.required]);
     this.description = new FormControl('', [Validators.required]);
     this.price = new FormControl('', [Validators.required]);
-    this.size = new FormControl('',[Validators.required]);
     this.image1 = new FormControl('', [Validators.required]);
     this.image2 = new FormControl('', [Validators.required]);
     this.image3 = new FormControl('', [Validators.required]);
     this.image4 = new FormControl('', [Validators.required]);
     this.productType = new FormControl('', [Validators.required]);
+    this.productSize = new FormControl('', [Validators.required]);
     this.productGenre = new FormControl('', [Validators.required]);
   }
 }

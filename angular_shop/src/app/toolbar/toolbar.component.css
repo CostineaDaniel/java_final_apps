@@ -25,7 +25,7 @@
   margin: auto;
 }
 .img-banner{
-  width: 30%;
+  width: 100%;
   margin: 16px;
   height: 300px;
   border-radius: 10px;
@@ -38,6 +38,9 @@
 
 .title-about-us {
   margin: 16px;
+  font-family: "Thasadith", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
 }
 
 .text-about-us {
@@ -59,11 +62,3 @@
   margin-left: 16px;
   border-radius: 16px;
 }
-.p2{
-  font-size: 18px;
-  font-weight: bold;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
-}
-

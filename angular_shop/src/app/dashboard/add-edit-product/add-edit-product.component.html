@@ -23,13 +23,6 @@
       </mat-form-field>
     </div>
 
-    <div class="input-container">
-      <mat-form-field class="input-field">
-        <mat-label>Marime</mat-label>
-        <input matInput placeholder="41EUR" [formControl]="size" required>
-        <mat-error *ngIf="size.invalid">{{getErrorMessage(size)}}</mat-error>
-      </mat-form-field>
-    </div>
 
     <div class="input-container">
       <mat-form-field class="input-field">
@@ -87,6 +80,23 @@
         </mat-select>
 
         <mat-error *ngIf="productGenre.invalid">{{getErrorMessage(productType)}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="input-container">
+      <mat-form-field class="input-field">
+        <mat-label>Product size</mat-label>
+
+        <mat-select [formControl]="productSize">
+          <mat-option value="SIZE_39">39EUR</mat-option>
+          <mat-option value="SIZE_40">40EUR</mat-option>
+          <mat-option value="SIZE_41">41EUR</mat-option>
+          <mat-option value="SIZE_42">42EUR</mat-option>
+          <mat-option value="SIZE_43">43EUR</mat-option>
+          <mat-option value="SIZE_44">44EUR</mat-option>
+        </mat-select>
+
+        <mat-error *ngIf="productSize.invalid">{{getErrorMessage(productSize)}}</mat-error>
       </mat-form-field>
     </div>
 

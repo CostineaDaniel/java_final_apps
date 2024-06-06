@@ -10,3 +10,27 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .margin-bottom {
   margin-bottom: 16px;
 }
+
+.thasadith-regular {
+  font-family: "Thasadith", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.thasadith-bold {
+  font-family: "Thasadith", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.thasadith-regular-italic {
+  font-family: "Thasadith", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.thasadith-bold-italic {
+  font-family: "Thasadith", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}

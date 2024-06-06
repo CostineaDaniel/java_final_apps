@@ -32,7 +32,7 @@
   </mat-drawer>
 
   <div class="drawer-sidenav-content">
-    <mat-toolbar color="primary">
+    <mat-toolbar color="grey">
       <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
@@ -42,8 +42,37 @@
       <app-cart-button></app-cart-button>
     </mat-toolbar>
 
+<div style="width: 100%">
+
+    <mat-form-field >
+      <mat-label>Sorteaza produsele</mat-label>
+      <mat-select  [(ngModel)]="selectedGenre">
+        <mat-option value="BARBATI">Pentru el</mat-option>
+        <mat-option value="FEMEI">Pentru ea</mat-option>
+        <mat-option value="ALL">Pentru toti</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  <button (click)="onGenre(selectedGenre)">Submit</button>
+</div>
+
+
     <app-list-products [isAdmin]="false"></app-list-products>
+
+
+
+    <div style="display:flex ; width:100%" class="div-landing">
+      <app-carousel class="p2"> </app-carousel>
+    </div>
+
+
+<app-footer></app-footer>
   </div>
 
+
+
 </mat-drawer-container>
+
+
+
 

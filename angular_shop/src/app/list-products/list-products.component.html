@@ -1,20 +1,60 @@
-<div class="page-view">
-  <mat-card *ngFor="let product of products" class="card-item" (click)="onBuy(product)">
-    <img [src]="product.image1" class="image"/>
+<div  class="page-view">
+  <mat-card *ngFor="let product of products" class="card-item" >
 
-    <mat-card-content (click)="onBuy(product)">
+    <img [src]="product.image1" class="image" (click)="onBuy(product)"/>
+
+    <mat-card-content class="content" >
+
       <p class="p-title">{{ product.name | titlecase}} </p>
       <p class="p-description">{{ product.description }}</p>
-      <p><span class="p-price"> {{ product.price }} RON</span></p>
+      <p class="p-price"><span> {{ product.price }} RON</span></p>
 
-      <div *ngIf="isAdmin" class="div-admin-controls">
+      <div *ngIf="isAdmin" class="div-admin-controls2">
         <button mat-raised-button color="primary" class="btn-action" (click)="onEdit(product)">Edit</button>
         <div style="height: 16px"></div>
         <button mat-raised-button color="accent" class="btn-action" (click)="onDelete(product)">Delete</button>
       </div>
-      <div *ngIf="!isAdmin" class="div-controls">
-        <button mat-raised-button color="primary" class="btn-buy" (click)="addToCart(product)">Add to cart</button>
-      </div>
+
     </mat-card-content>
+
+    <mat-card-footer style="margin:20px">
+      <div *ngIf="!isAdmin" class="div-controls">
+        <button mat-raised-button color="grey" class="btn-buy" (click)="addToCart(product)">Add to cart</button>
+      </div>
+    </mat-card-footer>
+
   </mat-card>
 </div>
+
+
+
+
+
+<!--<div  class="page-view">-->
+<!--  <mat-card *ngFor="let product of products" class="card-item" >-->
+
+<!--    <img [src]="product.image1" class="image" (click)="onBuy(product)"/>-->
+
+<!--    <mat-card-content class="content" >-->
+
+<!--      <p class="p-title">{{ product.name | titlecase}} </p>-->
+<!--      <p class="p-description">{{ product.description }}</p>-->
+<!--      <p class="p-price"><span> {{ product.price }} RON</span></p>-->
+
+<!--      <div *ngIf="isAdmin" class="div-admin-controls2">-->
+<!--        <button mat-raised-button color="primary" class="btn-action" (click)="onEdit(product)">Edit</button>-->
+<!--        <div style="height: 16px"></div>-->
+<!--        <button mat-raised-button color="accent" class="btn-action" (click)="onDelete(product)">Delete</button>-->
+<!--      </div>-->
+
+<!--    </mat-card-content>-->
+
+<!--    <mat-card-footer style="margin:20px">-->
+<!--      <div *ngIf="!isAdmin" class="div-controls">-->
+<!--        <button mat-raised-button color="primary" class="btn-buy" (click)="addToCart(product)">Add to cart</button>-->
+<!--      </div>-->
+<!--    </mat-card-footer>-->
+
+<!--  </mat-card>-->
+<!--</div>-->
+

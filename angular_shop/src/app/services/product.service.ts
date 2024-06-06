@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {ConfigurationsService} from "./configurations.service";
 
 @Injectable({
@@ -8,6 +8,7 @@ import {ConfigurationsService} from "./configurations.service";
 })
 export class ProductService {
   private productObservable = new BehaviorSubject<Array<any>>([]);
+
 
   constructor(private appConfig: ConfigurationsService, private httpClient: HttpClient) {
     this.readProducts();
@@ -17,9 +18,31 @@ export class ProductService {
     return this.productObservable.asObservable();
   }
 
+  getProductsByGenre(genre:string){
+    if(genre=="BARBATI"){
+      this.httpClient.get(`${this.appConfig.getApiUrl()}/products/menProducts`).subscribe((response: any) => {
+        this.productObservable.next(response.data);
+        console.log(response);
+      })
+    }else if(genre=="FEMEI"){
+      this.httpClient.get(`${this.appConfig.getApiUrl()}/products/womenProducts`).subscribe((response: any) => {
+        this.productObservable.next(response.data);
+        console.log(response);
+      })
+    }else {
+      this.readProducts();
+    }
+  }
+
+
+  // getLatestProducts(){
+  //   return this.productObservable
+  // }
+
   getProductById(id: string) {
     return this.httpClient.get(`${this.appConfig.getApiUrl()}/products/productById/${id}`);
   }
+
 
   createProduct(product: any) {
     this.httpClient.post(`${this.appConfig.getApiUrl()}/products/addProduct`, product).subscribe((response: any) => {

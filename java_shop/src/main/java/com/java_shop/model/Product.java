@@ -30,13 +30,8 @@ public class Product {
     @Column(name = "product_price", nullable = false)
     private double price;
 
-    @NotNull
-    @Column(name = "product_size")
-    @Min(39)
-    @Max(45)
-    private Integer size;
 
-    @NotNull
+
     @Column(name = "product_image_1")
     private String image1;
 
@@ -54,10 +49,14 @@ public class Product {
     @Enumerated(value = EnumType.STRING)
     private ProductType productType;
 
+    @Column(name = "product_size")
+    @Enumerated(value = EnumType.STRING)
+    private ProductSize productSize;
+
     @NotNull
     @Column(name ="product_genre")
     @Enumerated(value = EnumType.STRING)
-    private ProductGenre genre;
+    private ProductGenre productGenre;
 
     @ManyToMany(mappedBy = "productList", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("productList")

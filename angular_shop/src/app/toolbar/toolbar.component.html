@@ -5,15 +5,16 @@
       <img class="img-logo"
            [src]="appConfig.getAppLogo()"/>
     </div>
+
     <mat-card class="card-menu-button">
       <mat-card-content>
         <p>{{ appConfig.getAppOwner() }}</p>
       </mat-card-content>
     </mat-card>
 
-    <mat-card class="card-menu-button" (click)="onHome()">
+    <mat-card class="card-menu-button" *ngIf="isUserAdmin()" (click)="onDashboard()">
       <mat-card-content>
-        <p>Home</p>
+        <p>Dashboard</p>
       </mat-card-content>
     </mat-card>
 
@@ -28,28 +29,20 @@
         <p>Logout</p>
       </mat-card-content>
     </mat-card>
+
   </mat-drawer>
 
   <div class="drawer-sidenav-content">
-    <mat-toolbar color="grey">
+
+    <mat-toolbar color="primary">
       <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span>{{appConfig.getAppName()}} - Dashboard</span>
+
+      <span>{{ appConfig.getAppName() }}</span>
       <span class="example-spacer"></span>
+      <app-cart-button></app-cart-button>
     </mat-toolbar>
-
-
-    <div style="display: flex; margin-bottom: 30px; margin-top: 15vh">
-      <img class="img-logo" [src]="appConfig.getAppLogo()"/>
-    </div>
-
-    <div class="div-controls-menu">
-      <button mat-raised-button color="grey" class="btn-save margin-bottom" (click)="onManger('customers')">{{ 'Customer Manager' | titlecase }}</button>
-      <button mat-raised-button color="grey" class="btn-save margin-bottom" (click)="onManger('products')">{{ 'Products Manager' | titlecase }}</button>
-      <button mat-raised-button color="grey" class="btn-save margin-bottom" (click)="onManger('orders')">{{'Orders Manager' | titlecase }}</button>
-    </div>
   </div>
 
 </mat-drawer-container>
-

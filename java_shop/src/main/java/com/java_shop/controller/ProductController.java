@@ -3,6 +3,7 @@ package com.java_shop.controller;
 import com.java_shop.exception.BadRequestException;
 import com.java_shop.exception.ResourceNotFoundException;
 import com.java_shop.model.Product;
+import com.java_shop.model.ProductGenre;
 import com.java_shop.service.ProductService;
 import com.java_shop.utils.ApiResponse;
 import jakarta.validation.Valid;
@@ -37,6 +38,20 @@ public class ProductController {
                 () -> new ResourceNotFoundException("produsul cu idu-l : " + id + " nu a fost gasit !"));
 
         return ResponseEntity.ok(ApiResponse.success("Produsul a fost gasit ", optionalProduct.get()));
+    }
+
+    @GetMapping("/womenProducts")
+    public ResponseEntity<ApiResponse> getWomenProducts() {
+        List<Product> productsByGenre = productService.getWomenProducts();
+
+        return ResponseEntity.ok(ApiResponse.success("Lista : ", productsByGenre));
+    }
+
+    @GetMapping("/menProducts")
+    public ResponseEntity<ApiResponse> getMenProducts() {
+        List<Product> productsByGenre = productService.getMenProducts();
+
+        return ResponseEntity.ok(ApiResponse.success("Lista : ", productsByGenre));
     }
 
 

@@ -12,11 +12,14 @@ import {Router} from "@angular/router";
 import {CustomerService} from "../services/customer.service";
 import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {CarouselComponent} from "../carousel/carousel.component";
+import {ProductService} from "../services/product.service";
+import {FooterComponent} from "../footerr/footer.component";
 
 @Component({
   selector: 'app-shop',
@@ -37,16 +40,20 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatInput,
     MatFormFieldModule,
     MatSelectModule,
+    ReactiveFormsModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    CarouselComponent,
+    FooterComponent
   ],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.css',
 
 })
 export class ShopComponent {
+  selectedGenre: string = 'ALL';
 
-  constructor(public appConfig: ConfigurationsService, private router:Router , private customerService:CustomerService){
+  constructor(public appConfig: ConfigurationsService, private router:Router , private customerService:CustomerService, private productService: ProductService){
 
   }
   isUserAdmin(){
@@ -69,5 +76,9 @@ export class ShopComponent {
 
   onHome(){
     this.router.navigate(["/","home"]);
+  }
+
+  onGenre(genre : string){
+        this.productService.getProductsByGenre(genre)
   }
 }

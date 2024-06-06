@@ -1,0 +1,14 @@
+.p1{
+  color: whitesmoke;
+  font-size: 32px;
+  font-family: 'Thasadith', sans-serif;
+}
+.d1{
+  display: table;
+  height: 100px;
+  width: 100%;
+  background-color: black;
+}
+.logo{
+  width: 150px;
+}

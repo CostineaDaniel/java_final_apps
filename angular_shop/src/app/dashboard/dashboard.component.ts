@@ -61,4 +61,8 @@ export class DashboardComponent {
   onLogOut() {
     this.router.navigate(['/', 'auth']);
   }
+
+  onShop(){
+    this.router.navigate(['/','shop']);
+  }
 }

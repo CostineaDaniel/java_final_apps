@@ -1,13 +1,14 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProductService} from "../services/product.service";
-import {MatCardModule} from "@angular/material/card";
-import {NgForOf, NgIf, TitleCasePipe} from "@angular/common";
-import {MatButtonModule} from "@angular/material/button";
+import {MatCard, MatCardContent, MatCardModule} from "@angular/material/card";
+import {NgClass, NgForOf, NgIf, TitleCasePipe} from "@angular/common";
+import {MatButton, MatButtonModule} from "@angular/material/button";
 import {OrderService} from "../services/order.service";
 import {CustomerService} from "../services/customer.service";
 import {Router} from "@angular/router";
 
 @Component({
+
   selector: 'app-list-products',
   standalone: true,
   imports: [
@@ -15,7 +16,12 @@ import {Router} from "@angular/router";
     NgForOf,
     MatButtonModule,
     NgIf,
-    TitleCasePipe
+    TitleCasePipe,
+    MatCardContent,
+    MatCard,
+    TitleCasePipe,
+    MatButton,
+    NgClass
   ],
   templateUrl: './list-products.component.html',
   styleUrl: './list-products.component.css'
@@ -23,10 +29,17 @@ import {Router} from "@angular/router";
 export class ListProductsComponent {
   @Output() changeData = new EventEmitter<any>();// EventEmitter ne ajuta sa transmitem obiecte inafara componentei
   @Input("isAdmin") isAdmin: boolean = false;
-  products: Array<any> = [];
   productData: any = null;
 
-  constructor(private productService: ProductService, private orderService: OrderService, private customerService: CustomerService, private router: Router) {
+  products: any[] = []; // Schimbați acest tip la nevoie
+  womenProducts: any[] = []
+
+
+  constructor(
+    private productService: ProductService,
+    private orderService: OrderService,
+    private customerService: CustomerService,
+    private router: Router) {
     this.productService.getProductList().subscribe((productList: Array<any>) => {
       this.products = productList;
     })
@@ -45,7 +58,8 @@ export class ListProductsComponent {
   onBuy(item: any) {
     this.router.navigate(['/', 'product-details', item.id]);
   }
-  addToCart(item:any): void {
+
+  addToCart(item: any): void {
     if (this.customerService.getLoggedUser() == null) {
       alert("Utilizatorul nu este logat, trebuie sa te loghezi inainte sa adaugi produse in cos");
       this.router.navigate(["/", "auth"]);
@@ -54,3 +68,7 @@ export class ListProductsComponent {
     }
   }
 }
+
+
+
+

@@ -2,6 +2,7 @@ package com.java_shop.service.impl;
 
 import com.java_shop.exception.ResourceNotFoundException;
 import com.java_shop.model.Product;
+import com.java_shop.model.ProductGenre;
 import com.java_shop.repository.ProductRepository;
 import com.java_shop.service.ProductService;
 import org.springframework.stereotype.Service;
@@ -22,9 +23,22 @@ public class ProductServiceImpl implements ProductService {
         return this.productRepository.findAll();
     }
 
+
+
     @Override
     public Optional<Product> getProductById(Long id) {
         return this.productRepository.findById(id);
+    }
+
+    @Override
+    public List<Product> getWomenProducts() {
+        return this.productRepository.findAllByGenre(ProductGenre.FEMEI);
+    }
+
+    @Override
+    public List<Product> getMenProducts() {
+        return this.productRepository.findAllByGenre(ProductGenre.BARBATI);
+
     }
 
     @Override
