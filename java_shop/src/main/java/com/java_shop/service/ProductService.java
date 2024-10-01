@@ -15,6 +15,10 @@ public interface ProductService {
     Product saveProduct(Product product);
     Product updateProduct(Product product);
     void deleteProductById(Long id);
+    List<Product> getShoesProducts();
+    List<Product> getAccessoryProducts();
+    List<Product> getLatestProducts();
+
 
 
 

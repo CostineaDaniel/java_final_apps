@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
 import {NgForOf, NgIf} from "@angular/common";
 import {MatCardModule} from "@angular/material/card";
@@ -27,7 +27,7 @@ import {MatInput} from "@angular/material/input";
     MatInput,
     MatLabel,
     NgIf,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './cart-dialog.component.html',
   styleUrl: './cart-dialog.component.css'
@@ -35,6 +35,8 @@ import {MatInput} from "@angular/material/input";
 export class CartDialogComponent {
   products: Array<any> = [];
   details: FormControl = new FormControl<any>('', Validators.required);
+  totalPrice: number = 0;
+  // @Input() size : any;
 
   constructor(private orderService: OrderService) {
     this.orderService.getCart().subscribe((productsList: Array<any>) => {
@@ -42,8 +44,22 @@ export class CartDialogComponent {
     });
   }
 
+  incrementTotalPrice(){
+    this.totalPrice = 0;
+    for(var i = 0 ; i<this.products.length;i++){
+
+      console.log("aici incrementam " + this.products.length);
+      this.totalPrice += this.products[i].price;
+    }
+    return this.totalPrice;
+    console.log("aici incrementam " + this.products.length);
+  }
+
   public onBuy() {
+    console.log("Inainte" + this.orderService.getCount(),this.orderService.getCart());
     this.orderService.createOrder(this.details.getRawValue()!);
+    this.orderService.deleteCart();
+    console.log("DUpa" + this.orderService.getCount(),this.orderService.getCart());
   }
 
   public onDeleteFromCart(product: any) {

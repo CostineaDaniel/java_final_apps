@@ -8,9 +8,7 @@ import com.java_shop.model.Customer;
 import com.java_shop.model.UserRole;
 import com.java_shop.service.AuthService;
 import com.java_shop.service.CustomerService;
-import com.java_shop.utils.ApiResponse;
 import org.mindrot.jbcrypt.BCrypt;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -51,24 +49,31 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public Customer register(RegisterDto registerDto) {
+
+
             if(registerDto == null){
                 throw new BadRequestException("Datele nu sunt valide");
             }
             if(registerDto.getUsername() == null || registerDto.getUsername().isBlank()){
-                throw new BadRequestException("Usernameul este invalid");
+                throw new BadRequestException("Usernameul nu a fost introdus");
             }
             if(registerDto.getEmail() == null || registerDto.getEmail().isBlank()){
-                throw new BadRequestException("Emailul nu este valid");
+                throw new BadRequestException("Emailul nu a fost introdus");
             }
             if(registerDto.getPassword() == null || registerDto.getPassword().isBlank()){
-                throw new BadRequestException("Parola nu este valida");
+                throw new BadRequestException("Parola nu fost introdusa");
             }
             if(registerDto.getReTypePassword() == null || registerDto.getReTypePassword().isBlank()){
-                throw new BadRequestException("Confirmarea parolei nu este valida");
+                throw new BadRequestException("Confirmarea parolei nu a fost introdusa");
             }
             if(!registerDto.getPassword().equals(registerDto.getReTypePassword())){
                 throw new BadRequestException("Parolele nu coincid");
             }
+
+            if(customerService.getCustomerByEmail(registerDto.getEmail()).isPresent()){
+                throw new BadRequestException("Exista deja un cont cu emailul: " + registerDto.getEmail());
+            }
+
 
             Customer customer = new Customer();
             customer.setName(registerDto.getUsername());

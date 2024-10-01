@@ -15,12 +15,16 @@ public class OrderData {
     @Id
     @GeneratedValue
     private Long id;
+
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
+
     @Column(name = "price_total")
     private double total;
+
     @Column(name = "order_details")
     private String details;
+
     @Enumerated(value = EnumType.STRING)
     private PaymentStatus paymentStatus;
 

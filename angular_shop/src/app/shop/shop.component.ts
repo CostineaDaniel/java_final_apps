@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {CartButtonComponent} from "../home/cart-button/cart-button.component";
 import {ListProductsComponent} from "../list-products/list-products.component";
-import {MatCard, MatCardContent, MatCardTitle} from "@angular/material/card";
+import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
 import {MatDrawer, MatDrawerContainer} from "@angular/material/sidenav";
 import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
@@ -20,6 +20,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {CarouselComponent} from "../carousel/carousel.component";
 import {ProductService} from "../services/product.service";
 import {FooterComponent} from "../footerr/footer.component";
+import {MatButtonToggle} from "@angular/material/button-toggle";
 
 @Component({
   selector: 'app-shop',
@@ -44,7 +45,9 @@ import {FooterComponent} from "../footerr/footer.component";
     MatInputModule,
     FormsModule,
     CarouselComponent,
-    FooterComponent
+    FooterComponent,
+    MatButtonToggle,
+    MatCardHeader
   ],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.css',
@@ -52,6 +55,7 @@ import {FooterComponent} from "../footerr/footer.component";
 })
 export class ShopComponent {
   selectedGenre: string = 'ALL';
+  selectedType: string = '';
 
   constructor(public appConfig: ConfigurationsService, private router:Router , private customerService:CustomerService, private productService: ProductService){
 
@@ -78,7 +82,20 @@ export class ShopComponent {
     this.router.navigate(["/","home"]);
   }
 
-  onGenre(genre : string){
-        this.productService.getProductsByGenre(genre)
+  onAccessory(){
+        this.productService.getProductsByCategory("ACCESORII");
+
   }
+  onShoes(){
+    this.productService.getProductsByCategory("PAPUCI");
+    // this.productService.getProductsByType(type);
+  }
+  onMen(){
+    this.productService.getProductsByGenre("BARBATI");
+  }
+  onWomen(){
+    this.productService.getProductsByGenre("FEMEI");
+  }
+
+  protected readonly window = window;
 }

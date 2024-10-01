@@ -8,6 +8,7 @@ import {ConfigurationsService} from "./configurations.service";
 })
 export class ProductService {
   private productObservable = new BehaviorSubject<Array<any>>([]);
+  private latestProductsObservable = new BehaviorSubject<Array<any>>([]);
 
 
   constructor(private appConfig: ConfigurationsService, private httpClient: HttpClient) {
@@ -15,8 +16,19 @@ export class ProductService {
   }
 
   getProductList() {
-    return this.productObservable.asObservable();
+    return this.productObservable.asObservable();// la fiecare next se modifica observable
   }
+
+
+  getLatestProducts(){
+    this.httpClient.get(`${this.appConfig.getApiUrl()}/products/latestProducts`).subscribe((response: any)=>{
+      console.log(response);
+      this.latestProductsObservable.next(response.data);
+
+    })
+    return this.latestProductsObservable.asObservable();
+  }
+
 
   getProductsByGenre(genre:string){
     if(genre=="BARBATI"){
@@ -26,6 +38,22 @@ export class ProductService {
       })
     }else if(genre=="FEMEI"){
       this.httpClient.get(`${this.appConfig.getApiUrl()}/products/womenProducts`).subscribe((response: any) => {
+        this.productObservable.next(response.data);
+        console.log(response);
+      })
+    }else {
+      this.readProducts();
+    }
+  }
+
+  getProductsByCategory(productCategory:string){
+    if(productCategory =="PAPUCI"){
+      this.httpClient.get(`${this.appConfig.getApiUrl()}/products/shoesProducts`).subscribe((response: any) => {
+        this.productObservable.next(response.data);
+        console.log(response);
+      })
+    }else if(productCategory=="ACCESORII"){
+      this.httpClient.get(`${this.appConfig.getApiUrl()}/products/accessoryProducts`).subscribe((response: any) => {
         this.productObservable.next(response.data);
         console.log(response);
       })

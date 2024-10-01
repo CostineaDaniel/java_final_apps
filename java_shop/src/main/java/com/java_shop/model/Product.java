@@ -2,13 +2,11 @@ package com.java_shop.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import jakarta.validation.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -47,7 +45,7 @@ public class Product {
     @NotNull
     @Column(name = "product_category")
     @Enumerated(value = EnumType.STRING)
-    private ProductType productType;
+    private ProductCategory productCategory;
 
     @Column(name = "product_size")
     @Enumerated(value = EnumType.STRING)

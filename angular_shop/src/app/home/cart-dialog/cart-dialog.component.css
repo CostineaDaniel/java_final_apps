@@ -2,7 +2,7 @@
   margin: 24px;
   margin-left: 32px;
   margin-bottom: 0px;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: bold;
 }
 .item-card {
@@ -79,4 +79,9 @@
 .card-container{
   width:400px;
   margin: 16px;
+}
+.price{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  right:0;
 }

@@ -13,6 +13,8 @@ import {ConfigurationsService} from "../services/configurations.service";
 import {ProductService} from "../services/product.service";
 import {CarouselComponent} from "../carousel/carousel.component";
 import {ToolbarComponent} from "../toolbar/toolbar.component";
+import {FooterComponent} from "../footerr/footer.component";
+import {OrderService} from "../services/order.service";
 
 @Component({
   selector: 'app-home',
@@ -33,7 +35,8 @@ import {ToolbarComponent} from "../toolbar/toolbar.component";
     MatButton,
     NgClass,
     CarouselComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    FooterComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -44,8 +47,10 @@ export class HomeComponent {
   products: any[] = []; // Schimbați acest tip la nevoie
   currentIndex: number = 0;
   transitioning: boolean = false;
+  pcount: number = this.orderService.getCount();
 
-  constructor(private productService: ProductService,
+  constructor(private orderService : OrderService,
+              private productService: ProductService,
               public appConfig: ConfigurationsService,
               private router:Router ,
               private customerService:CustomerService)
@@ -53,6 +58,7 @@ export class HomeComponent {
     this.productService.getProductList().subscribe((productList: Array<any>) => {
       this.products = productList;
     })
+
   }
 
   onBuy(item: any) {
@@ -73,6 +79,14 @@ export class HomeComponent {
   }
 
   onShop(){
+    this.router.navigate(['/','shop']);
+  }
+  onMen(){
+    this.productService.getProductsByGenre("BARBATI");
+    this.router.navigate(['/','shop']);
+  }
+  onWomen(){
+    this.productService.getProductsByGenre("FEMEI");
     this.router.navigate(['/','shop']);
   }
 

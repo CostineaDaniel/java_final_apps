@@ -54,6 +54,19 @@ public class ProductController {
         return ResponseEntity.ok(ApiResponse.success("Lista : ", productsByGenre));
     }
 
+    @GetMapping("/shoesProducts")
+    public ResponseEntity<ApiResponse> getShoesProducts() {
+        List<Product> productsByType = productService.getShoesProducts();
+
+        return ResponseEntity.ok(ApiResponse.success("Lista : ", productsByType));
+    }
+
+    @GetMapping("/accessoryProducts")
+    public ResponseEntity<ApiResponse> getAccessoryProducts() {
+        List<Product> productsByType = productService.getAccessoryProducts();
+
+        return ResponseEntity.ok(ApiResponse.success("Lista : ", productsByType));
+    }
 
     @PostMapping("/addProduct")
     public ResponseEntity<ApiResponse> addProduct(@Valid @RequestBody Product product) {
@@ -80,6 +93,10 @@ public class ProductController {
         return ResponseEntity.ok(ApiResponse.success("Produsul a fost sters cu succes",null));
     }
 
-
+    @GetMapping("/latestProducts")
+    public ResponseEntity<ApiResponse> getLatestProducts(){
+        List<Product> list = this.productService.getLatestProducts();
+        return ResponseEntity.ok(ApiResponse.success("Lista ultimelor produse : ",list));
+    }
 
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProductService} from "../services/product.service";
 import {MatButtonModule} from "@angular/material/button";
@@ -11,15 +11,24 @@ import {ConfigurationsService} from "../services/configurations.service";
 import {CustomerService} from "../services/customer.service";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {OrderService} from "../services/order.service";
 import {CartButtonComponent} from "../home/cart-button/cart-button.component";
-import {MatTab, MatTabGroup} from "@angular/material/tabs";
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatGridList, MatGridTile} from "@angular/material/grid-list";
-import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTab, MatTabGroup, MatTabsModule} from "@angular/material/tabs";
+
+import {MatGridList, MatGridListModule, MatGridTile} from "@angular/material/grid-list";
+import {ImageSliderComponent} from "../image-slider/components/image-slider.component";
+import {FooterComponent} from "../footerr/footer.component";
+import {CarouselComponent} from "../carousel/carousel.component";
+import {MatButtonToggle} from "@angular/material/button-toggle";
+import {MatSnackBar} from "@angular/material/snack-bar";
+
+
+// import * as console from "console";
+
+
 
 @Component({
   selector: 'app-product-details',
@@ -43,21 +52,29 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatTab,
     MatGridTile,
     MatGridList,
-    MatGridListModule
+    MatGridListModule,
+    ImageSliderComponent,
+    FooterComponent,
+    CarouselComponent,
+    FormsModule,
+    MatButtonToggle,
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css'
 })
 export class ProductDetailsComponent implements OnInit {
+
   productData: any = null;
   startDate = new FormControl('', [Validators.required]);
   endDate = new FormControl('', [Validators.required]);
   details = new FormControl('', [Validators.required]);
-
   data = {}
+  selectedValue: any='';
+  size = new FormControl('', [Validators.required]);
 
-  constructor(private route: ActivatedRoute, private router: Router, private customerService: CustomerService, private productService: ProductService, public appConfig: ConfigurationsService, private orderService: OrderService) {
+  constructor(private snackBar: MatSnackBar, private route: ActivatedRoute, private router: Router, private customerService: CustomerService, private productService: ProductService, public appConfig: ConfigurationsService, private orderService: OrderService) {
+
   }
 
 
@@ -84,6 +101,10 @@ export class ProductDetailsComponent implements OnInit {
 
   }
 
+  onShop(){
+    this.router.navigate(['/','shop']);
+  }
+
   onDashboard() {
     this.router.navigate(['/', 'dashboard']);
   }
@@ -96,15 +117,26 @@ export class ProductDetailsComponent implements OnInit {
     this.router.navigate(['/', 'auth']);
   }
 
-  onBuy(): void {
+  onBuy(size:any): void {
+
+    if(size == null){
+      this.snackBar.open("You need to select a size first",'Close',{duration:9000});
+    }else
     if (this.customerService.getLoggedUser() == null) {
       alert("Utilizatorul nu este logat, trebuie sa te loghezi inainte sa adaugi produse in cos");
       this.router.navigate(["/", "auth"]);
     } else {
-      this.productData.size=40;
+      this.selectedValue=size;
+      this.productData.productSize = size
+      console.log(this.productData.productSize);
+      // this.productData.productSize = this.selectedValue;
+      console.log(this.selectedValue,size);
+
       this.orderService.addToCart(this.productData);
+      this.size = new FormControl('', [Validators.required]);
     }
   }
+
 
 
   getErrorMessage(input: FormControl): string {

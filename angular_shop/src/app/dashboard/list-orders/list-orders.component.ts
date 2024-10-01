@@ -19,12 +19,14 @@ import {MatIconModule} from "@angular/material/icon";
 })
 export class ListOrdersComponent {
   orders: Array<any> = [];
+  products: Array<any> = [];
 
   constructor(private orderService: OrderService) {
-    this.orderService.getOrders().subscribe((orderList:Array<any>) => {
+    this.orderService.getOrders().subscribe((orderList: Array<any>) => {
       this.orders = orderList;
     })
   }
+
 
   onDelete(order:any){
     this.orderService.deleteOrder(order.id);

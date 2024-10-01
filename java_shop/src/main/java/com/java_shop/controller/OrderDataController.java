@@ -2,6 +2,7 @@ package com.java_shop.controller;
 
 import com.java_shop.exception.ResourceNotFoundException;
 import com.java_shop.model.OrderData;
+import com.java_shop.model.Product;
 import com.java_shop.repository.OrderDataRepository;
 import com.java_shop.service.OrderDataService;
 import com.java_shop.utils.ApiResponse;
@@ -27,6 +28,7 @@ public class OrderDataController {
 
         return ResponseEntity.ok(ApiResponse.success("Lista cu comenzile : ", orderDataList));
     }
+
 
     @GetMapping("/orderById/{id}")
     public ResponseEntity<ApiResponse> getOrderById(@PathVariable(name = "id") Long id) {
@@ -70,5 +72,6 @@ public class OrderDataController {
         return ResponseEntity.ok(ApiResponse.success("Order with id: " + id + " was canceled successfully", null));
 
     }
+
 
 }

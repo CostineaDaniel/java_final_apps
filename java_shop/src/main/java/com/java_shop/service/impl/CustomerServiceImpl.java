@@ -30,7 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer saveCustomer(Customer customer) {
-        //metoda hashpw cripteaza metoda inainte sa o salvam in baza de date dupa tipul declarat in al doilea parametru gensalt()
+
         String password = BCrypt.hashpw(customer.getPassword(), BCrypt.gensalt());
         customer.setPassword(password);
 
@@ -53,5 +53,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Optional<Customer> getCustomerByEmail(String email){
         return customerRepository.getCustomerByEmail(email);
+    }
+
+    @Override
+    public Optional<Customer> findByEmail(String email){
+        return customerRepository.findByEmail(email);
     }
 }

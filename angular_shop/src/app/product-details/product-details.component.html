@@ -33,60 +33,175 @@
   </mat-drawer>
 
 
+
   <div class="drawer-sidenav-content">
-    <mat-toolbar color="primary">
+
+    <mat-toolbar class="toolbar">
       <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span>{{ appConfig.getAppName() }} {{ productData != null ? ' - ' + productData.name : ''}}</span>
+      <span>{{ appConfig.getAppName() }} </span>
       <span class="example-spacer"></span>
       <app-cart-button></app-cart-button>
     </mat-toolbar>
 
+  </div>
 
-      <div style="display: flex">
+  <div>
+    <mat-card class="back" (click)="onShop()">
+      <p style="margin:auto">Inapoi pe shop</p>
+    </mat-card>
+  </div>
 
-        <div style="display: ruby; margin-left: auto; margin-right: auto">
+<div style="display: grid;grid-template-columns: repeat(auto-fit,minmax(200px, 1fr));gap: 10px;padding: 10px;box-sizing: border-box;">
 
-          <mat-card class="card-item">
-            <mat-card-content>
-              <p class="p-title">{{ productData.name | titlecase}} </p>
-              <div *ngIf="productData">
-                <mat-grid-list cols="2" rowHeight="2:1">
-                  <mat-grid-tile><img [src]="productData.image1" class="image"/></mat-grid-tile>
-                  <mat-grid-tile><img [src]="productData.image2" class="image"/></mat-grid-tile>
-                  <mat-grid-tile><img [src]="productData.image3" class="image"/></mat-grid-tile>
-                  <mat-grid-tile><img [src]="productData.image4" class="image"/></mat-grid-tile>
-                </mat-grid-list>
-              </div>
-              <p class="p-description">{{ productData.description }}</p>
-              <p>Price:<span class="p-price">{{ productData.price }} RON</span></p>
-              <p>Pentru <span class="p-price">{{ productData.price }} RON</span></p>
-              <div>
-                <mat-form-field>
-                  <mat-label>Marime :</mat-label>
-                  <select matNativeControl required>
-                    <option value="39">39</option>
-                    <option value="40">40</option>
-                    <option value="41">41</option>
-                    <option value="42">42</option>
-                    <option value="43">43</option>
-                    <option value="44">44</option>
-                  </select>
-                </mat-form-field>
-              </div>
+  <div style="padding: 20px;box-sizing: border-box">
+    <app-image-slider [productData]="productData"></app-image-slider>
+  </div>
 
-              <button mat-raised-button color="primary" class="btn-save" (click)="onBuy()">Buy now!</button>
+  <div style="margin:10px;padding: 20px;box-sizing: border-box;top:0;">
 
-            </mat-card-content>
-          </mat-card>
+    <div style="display: flex; flex-wrap: wrap; margin-left: auto; margin-right: auto; top:0;">
 
 
-        </div>
-      </div>
+      <mat-card class="card-item">
+        <mat-card-header><p class="p-title">{{ productData.name | titlecase}} </p></mat-card-header>
+        <mat-card-content >
+
+
+
+          <p class="p-description">{{ productData.description }}</p>
+          <p style="font-size: 17px"> Pentru: <span style="font-size: 17px">{{ productData.productGenre }}</span></p>
+          <p style="font-size: 17px"> Price: <span class="p-price">{{ productData.price }} RON</span></p>
+
+          <div>
+            <p style="font-size: 18px">Alege marimea :</p>
+            <mat-form-field style="width: 125px">
+              <mat-label>EUR :</mat-label>
+              <select matNativeControl required [(ngModel)]="size">
+                <option value="SIZE_39">39</option>
+                <option value="SIZE_40">40</option>
+                <option value="SIZE_41">41</option>
+                <option value="SIZE_42">42</option>
+                <option value="SIZE_43">43</option>
+                <option value="SIZE_44">44</option>
+              </select>
+            </mat-form-field>
+          </div>
+
+          <button mat-raised-button class="adauga" (click)="onBuy(size)">Adauga in cos !</button>
+
+
+
+        </mat-card-content>
+      </mat-card>
 
 
     </div>
+  </div>
+
+</div>
+  <div style="display: block;width: 100%;height: 2px;background-color: lightgray;margin-bottom: 40px"></div>
+  <app-carousel></app-carousel>
+  <app-footer></app-footer>
 
 </mat-drawer-container>
+
+
+
+
+
+
+
+<!--<mat-drawer-container class="drawer-container" autosize>-->
+<!--  <mat-drawer #drawer class="drawer-sidenav" mode="side">-->
+
+<!--    <div class="div-logo">-->
+<!--      <img class="img-logo"-->
+<!--           [src]="appConfig.getAppLogo()"/>-->
+<!--    </div>-->
+
+<!--    <mat-card class="card-menu-button">-->
+<!--      <mat-card-content>-->
+<!--        <p>{{ appConfig.getAppOwner() }}</p>-->
+<!--      </mat-card-content>-->
+<!--    </mat-card>-->
+
+<!--    <mat-card class="card-menu-button" (click)="onHome()">-->
+<!--      <mat-card-content>-->
+<!--        <p>Home</p>-->
+<!--      </mat-card-content>-->
+<!--    </mat-card>-->
+
+<!--    <mat-card class="card-menu-button" *ngIf="isUserAdmin()" (click)="onDashboard()">-->
+<!--      <mat-card-content>-->
+<!--        <p>Dashboard</p>-->
+<!--      </mat-card-content>-->
+<!--    </mat-card>-->
+
+<!--    <mat-card class="card-menu-button" (click)="onLogOut()">-->
+<!--      <mat-card-content>-->
+<!--        <p>Logout</p>-->
+<!--      </mat-card-content>-->
+<!--    </mat-card>-->
+
+<!--  </mat-drawer>-->
+
+
+<!--  <div class="drawer-sidenav-content">-->
+<!--    <mat-toolbar color="primary">-->
+<!--      <button mat-icon-button class="example-icon" (click)="drawer.toggle()">-->
+<!--        <mat-icon>menu</mat-icon>-->
+<!--      </button>-->
+<!--      <span>{{ appConfig.getAppName() }} {{ productData != null ? ' - ' + productData.name : ''}}</span>-->
+<!--      <span class="example-spacer"></span>-->
+<!--      <app-cart-button></app-cart-button>-->
+<!--    </mat-toolbar>-->
+
+
+<!--      <div style="display: flex">-->
+
+<!--        <div style="display: ruby; margin-left: auto; margin-right: auto">-->
+
+<!--          <mat-card class="card-item">-->
+<!--            <mat-card-content>-->
+<!--              <p class="p-title">{{ productData.name | titlecase}} </p>-->
+<!--              <div *ngIf="productData">-->
+<!--                <mat-grid-list cols="2" rowHeight="2:1">-->
+<!--                  <mat-grid-tile><img [src]="productData.image1" class="image"/></mat-grid-tile>-->
+<!--                  <mat-grid-tile><img [src]="productData.image2" class="image"/></mat-grid-tile>-->
+<!--                  <mat-grid-tile><img [src]="productData.image3" class="image"/></mat-grid-tile>-->
+<!--                  <mat-grid-tile><img [src]="productData.image4" class="image"/></mat-grid-tile>-->
+<!--                </mat-grid-list>-->
+<!--              </div>-->
+<!--              <p class="p-description">{{ productData.description }}</p>-->
+<!--              <p>Price:<span class="p-price">{{ productData.price }} RON</span></p>-->
+<!--              <p>Pentru <span class="p-price">{{ productData.price }} RON</span></p>-->
+<!--              <div>-->
+<!--                <mat-form-field>-->
+<!--                  <mat-label>Marime :</mat-label>-->
+<!--                  <select matNativeControl required>-->
+<!--                    <option value="39">39</option>-->
+<!--                    <option value="40">40</option>-->
+<!--                    <option value="41">41</option>-->
+<!--                    <option value="42">42</option>-->
+<!--                    <option value="43">43</option>-->
+<!--                    <option value="44">44</option>-->
+<!--                  </select>-->
+<!--                </mat-form-field>-->
+<!--              </div>-->
+
+<!--              <button mat-raised-button color="primary" class="btn-save" (click)="onBuy()">Buy now!</button>-->
+
+<!--            </mat-card-content>-->
+<!--          </mat-card>-->
+
+
+<!--        </div>-->
+<!--      </div>-->
+
+
+<!--    </div>-->
+
+<!--</mat-drawer-container>-->
 

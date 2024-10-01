@@ -34,7 +34,7 @@ export class AddEditProductComponent implements OnChanges {
   image2 = new FormControl('', [Validators.required]);
   image3 = new FormControl('', [Validators.required]);
   image4 = new FormControl('', [Validators.required]);
-  productType = new FormControl('', [Validators.required]);
+  productCategory = new FormControl('', [Validators.required]);
   productSize = new FormControl('', [Validators.required]);
   productGenre = new FormControl('', [Validators.required]);
 
@@ -52,7 +52,7 @@ export class AddEditProductComponent implements OnChanges {
       this.image2 = new FormControl(this.product.image2, [Validators.required]);
       this.image3 = new FormControl(this.product.image3, [Validators.required]);
       this.image4 = new FormControl(this.product.image4, [Validators.required]);
-      this.productType = new FormControl(this.product.productType, [Validators.required]);
+      this.productCategory = new FormControl(this.product.productType, [Validators.required]);
       this.productSize = new FormControl(this.product.productSize, [Validators.required]);
       this.productGenre = new FormControl(this.product.productGenre, [Validators.required]);
     }
@@ -75,7 +75,7 @@ export class AddEditProductComponent implements OnChanges {
       image2: this.image2.getRawValue()!,
       image3: this.image3.getRawValue()!,
       image4: this.image4.getRawValue()!,
-      productType: this.productType.getRawValue()!,
+      productType: this.productCategory.getRawValue()!,
       productSize: this.productSize.getRawValue()!,
       productGenre: this.productGenre.getRawValue()!,
     };
@@ -100,7 +100,7 @@ export class AddEditProductComponent implements OnChanges {
     this.image2 = new FormControl('', [Validators.required]);
     this.image3 = new FormControl('', [Validators.required]);
     this.image4 = new FormControl('', [Validators.required]);
-    this.productType = new FormControl('', [Validators.required]);
+    this.productCategory = new FormControl('', [Validators.required]);
     this.productSize = new FormControl('', [Validators.required]);
     this.productGenre = new FormControl('', [Validators.required]);
   }

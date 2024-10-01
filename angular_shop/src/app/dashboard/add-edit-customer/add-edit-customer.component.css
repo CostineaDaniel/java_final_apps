@@ -12,6 +12,9 @@
   display: flex;
 }
 .btn-save{
+  color: white;
+
+  background-color: grey;
   margin: auto;
 }
 

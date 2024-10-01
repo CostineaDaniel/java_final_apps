@@ -1,10 +1,12 @@
 <div class="page-view-carousel">
+
   <div style="display:flex ; width:100%">
     <p class="p2">Ultimele produse adaugate pe site</p>
   </div>
   <div *ngIf="!isAdmin" class="horizontal-view">
-    <div  class="product-container" [style.transform]="transitioning ? 'translateX(-' + (currentIndex * 100) + '%)' : 'none'">
-      <mat-card *ngFor="let product of getVisibleProducts()" class="card-item-horizontal">
+    <div class="product-container"
+         [style.transform]="transitioning ? 'translateX(-' + (currentIndex * 100) + '%)' : 'none'">
+      <mat-card *ngFor="let product of getVisibleProducts()" class="card-item-horizontal" (click)="onClick(product)">
         <img [src]="product.image1" class="image-carousel"/>
 
         <mat-card-content>
@@ -13,9 +15,6 @@
           <!--          <p>Product Type: {{ product.productType | titlecase }}</p>-->
           <p>Price:<span class="p-price">{{ product.price }} RON</span></p>
 
-          <div class="div-controls">
-            <button mat-raised-button color="primary" class="btn-buy" (click)="onBuy(product)">Buy now!</button>
-          </div>
         </mat-card-content>
       </mat-card>
 

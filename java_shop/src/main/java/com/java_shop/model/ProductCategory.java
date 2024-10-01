@@ -1,8 +1,8 @@
 package com.java_shop.model;
 
-public enum ProductType {
+public enum ProductCategory {
     PAPUCI,
-    ACCESORII,
+    ACCESORII
 
 
 }

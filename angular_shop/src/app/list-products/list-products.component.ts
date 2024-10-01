@@ -59,14 +59,7 @@ export class ListProductsComponent {
     this.router.navigate(['/', 'product-details', item.id]);
   }
 
-  addToCart(item: any): void {
-    if (this.customerService.getLoggedUser() == null) {
-      alert("Utilizatorul nu este logat, trebuie sa te loghezi inainte sa adaugi produse in cos");
-      this.router.navigate(["/", "auth"]);
-    } else {
-      this.orderService.addToCart(this.productData);
-    }
-  }
+
 }
 
 

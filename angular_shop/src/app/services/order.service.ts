@@ -9,32 +9,68 @@ import {ConfigurationsService} from "./configurations.service";
 })
 export class OrderService {
   private cartObservable = new BehaviorSubject<Array<any>>([]);
-  private ordersObservable = new BehaviorSubject(<Array<any>>([]));
+  private ordersObservable = new BehaviorSubject<Array<any>>([]);
+  private productCount = new BehaviorSubject<number>(0);
+  productCount$ = this.productCount.asObservable();
 
   constructor(private appConfig: ConfigurationsService, private customerService: CustomerService, private httpClient: HttpClient) {
     this.readOrders();
   }
 
+  updateCount(count : number){
+    this.productCount.next(count);
+  }
+
+  resetCount(){
+    this.productCount.next(0);
+  }
+
+  getCount(){
+    return this.productCount.getValue();
+  }
+
+  deleteCart(){
+    console.log("inainte de delete : " + this.cartObservable.getValue().length)
+    let arr : any = [];
+    this.cartObservable.next(arr);
+    this.productCount.next(0);
+    this.resetCount();
+    console.log("dupa delete: " + this.cartObservable.getValue().length);
+  }
+
   public addToCart(product: any): void {
+
+
     let products = this.cartObservable.getValue();
+
     products.push(product);
+    const currentCount= this.productCount.getValue();
+
+    this.productCount.next(currentCount+1);
+    console.log(currentCount)
     this.cartObservable.next(products);
   }
 
+
   public removeFromCart(product: any): void {
     let products = this.cartObservable.getValue();
+    if(this.productCount.getValue() != 0){
+      const currentCount= this.productCount.getValue();
+      this.productCount.next(currentCount-1);
+    }
 
     products = products.filter((it: any) => it.id != product.id);
     this.cartObservable.next(products);
   }
 
   public getCart() {
-    return this.cartObservable.asObservable()
+    return this.cartObservable.asObservable();
   }
 
   public getOrders() {
     return this.ordersObservable.asObservable();
   }
+
 
   public createOrder(details: string) {
     let cartProducts = this.cartObservable.getValue();
@@ -43,8 +79,7 @@ export class OrderService {
     let productIds = [];
     for (let product of cartProducts) {
       total += product.price;
-
-      productIds.push({id: product.id});
+      productIds.push({id: product.name});
     }
 
 
@@ -65,6 +100,7 @@ export class OrderService {
       this.readOrders();
     })
   }
+
 
   public deleteOrder(id: string) {
     this.httpClient.delete(`${this.appConfig.getApiUrl()}/orders/deleteOrderById/${id}`).subscribe((response: any) => {

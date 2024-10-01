@@ -42,27 +42,31 @@
         <mat-icon>menu</mat-icon>
       </button>
 
-      <img style="height: 100%" src="assets/logo-no-background.png">
-      <span class="example-spacer"></span>
-
       <span>{{ appConfig.getAppName() }}</span>
-
       <span class="example-spacer"></span>
 
-
-
-
-      <app-cart-button></app-cart-button>
+      <app-cart-button [productsCount]="pcount"></app-cart-button>
     </mat-toolbar>
 
 <!---->
-      <div >
+
+    <div style="display:flex ; width:100%">
+      <h1  class="h-landing">Bine ai venit pe {{ appConfig.getAppName() }}, magazinul online dedicat iubitorilor de sneakersi </h1>
+    </div>
+
+
+       <div class="back-div">
+
+          <div class="text-overlay1">Pentru el</div>
+          <img (click)="onMen()" class="front-div" src="https://manofmany.com/_next/image?url=https%3A%2F%2Fapi.manofmany.com%2Fwp-content%2Fuploads%2F2022%2F04%2FBest-jordans-of-all-time-feature.png&w=1200&q=75">
+
+          <div class="text-overlay2">Pentru ea</div>
+          <img (click)="onWomen()" class="front-div2" src="https://www.kickgame.co.uk/cdn/shop/products/air-jordan-4-retro-wmns-starfish-cw7183-100_6_yb2x3g.jpg?v=1659011411&width=1024">
+
 
       </div>
 
-      <div style="display:flex ; width:100%">
-        <h1  class="h-landing">Bine ai venit pe {{ appConfig.getAppName() }}, magazinul online dedicat iubitorilor de sneakersi </h1>
-      </div>
+
 
       <div >
         <mat-card class="card-about-us">
@@ -124,6 +128,8 @@
         <div style="display:flex ; width:100%" class="div-landing">
           <app-carousel class="p2"> </app-carousel>
         </div>
+
+        <app-footer></app-footer>
 
       </div>
   </div>

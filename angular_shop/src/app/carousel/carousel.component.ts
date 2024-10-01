@@ -6,22 +6,23 @@ import {ProductService} from "../services/product.service";
 import {OrderService} from "../services/order.service";
 import {CustomerService} from "../services/customer.service";
 import {Router} from "@angular/router";
-
+import {MatDivider} from "@angular/material/divider";
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list'
 @Component({
   selector: 'app-carousel',
   standalone: true,
-    imports: [
-      MatCardModule,
-      NgForOf,
-      MatButtonModule,
-      NgIf,
-      TitleCasePipe,
-      MatCardContent,
-      MatCard,
-      TitleCasePipe,
-      MatButton,
-      NgClass
-    ],
+  imports: [
+    MatCardModule,
+    NgForOf,
+    MatButtonModule,
+    NgIf,
+    TitleCasePipe,
+    MatCardContent,MatCard,MatButton, MatDivider, MatListModule, MatDividerModule,
+    TitleCasePipe,
+    NgClass,
+
+  ],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.css'
 })
@@ -31,6 +32,7 @@ export class CarouselComponent {
   productData: any = null;
 
   products: any[] = []; // Schimbați acest tip la nevoie
+  latestProducts: any[] = [];
   currentIndex: number = 0;
   transitioning: boolean = false;
 
@@ -39,13 +41,13 @@ export class CarouselComponent {
     private orderService: OrderService,
     private customerService: CustomerService,
     private router: Router) {
-    this.productService.getProductList().subscribe((productList: Array<any>) => {
+    this.productService.getLatestProducts().subscribe((productList: Array<any>) => {
       this.products = productList;
     })
   }
 
   ngOnInit(): void {
-    this.productService.getProductList().subscribe((productList: any[]) => {
+    this.productService.getLatestProducts().subscribe((productList: any[]) => {
       this.products = productList;
     });
   }
@@ -75,16 +77,8 @@ export class CarouselComponent {
       }, 100);
     }
   }
-  onBuy(item:any) {
-    this.router.navigate(['/', 'product-details', item.id]);
+  onClick(product:any) {
+    this.router.navigate(['/', 'product-details', product.id]);
   }
-  addToCart(item:any): void {
-    if (this.customerService.getLoggedUser() == null) {
-      alert("Utilizatorul nu este logat, trebuie sa te loghezi inainte sa adaugi produse in cos");
-      this.router.navigate(["/", "auth"]);
-    } else {
 
-      this.orderService.addToCart(this.productData);
-    }
-  }
 }

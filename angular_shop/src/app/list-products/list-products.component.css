@@ -1,9 +1,7 @@
 .card-item{
   height: auto;
-  width: 22vw;
-  margin: 8px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  width: calc(20% - 20px);
+  margin-bottom: 20px;
 }
 .card-item-carousel{
   width: calc(31% - 16px); /* Calculăm lățimea cardului pentru a ocupa aproximativ 31% din lățimea ferestrei, iar -16px pentru a ține cont de margin */
@@ -12,8 +10,8 @@
   border-top-right-radius: 20px;
 }
 .content{
-  height: auto;
-  margin-bottom: 20px;
+  height: 170px;
+
   width: 80%;
 }
 .image{
@@ -21,12 +19,15 @@
   object-fit: cover;
 }
 .page-view{
-  display:  grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 5px;
-  width: 100%;
-  /*flex-wrap: wrap;*/
+  width: 98%;
+  display:  flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  /*grid-template-columns: repeat(4,1fr);*/
+  gap: 20px;
   margin:10px;
+  margin-bottom: 40px;
+  /*padding: 20px;*/
 }
 .page-view-carousel{
   display: flex;
@@ -44,11 +45,30 @@
   right: 10px;
 }
 
-.btn-buy{
+.btn-action{
+  height: 25px;
+  font-size: 18px;
+  width: 80%;
   margin-left: auto;
+  margin-right: auto;
+  bottom: +20px;
 }
+
+.btn-action2{
+  height: 22px;
+  font-size: 14px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
 .div-admin-controls{
   display: grid;
+  padding-top: 15px;
+  bottom:  0 ;
+  margin-left: auto;
+  margin-right: auto;
 }
 .p-title{
   font-size: 20px;
@@ -57,13 +77,28 @@
   margin-top: 16px;
 }
 .p-description{
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   font-size: 14px;
   font-style: italic;
+  margin-bottom: 10px;
 }
-.p-price{
-  font-size: 18px;
-  font-weight: bold;
 
+.description{
+  /*white-space: nowrap;*/
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height:60px;
+  width: 100%;
+}
+
+.p-price{
+  font-size: 24px;
+  font-weight: bold;
+  bottom: 0;
+  margin-bottom: 30px;
+  margin-right: auto;
+  margin-left: auto;
 }
 .p-size{
   font-weight: bold;

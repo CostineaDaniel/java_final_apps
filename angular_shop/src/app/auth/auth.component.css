@@ -13,7 +13,7 @@
 .div-container {
   height: 100%;
   display: flex;
-  background-image: url('../../assets/login-background.avif');
+  background-color: whitesmoke;
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }

@@ -11,7 +11,9 @@
 .div-buttons-container{
   display: flex;
 }
-.btn-save{
+.btn{
+  color:blue;
+  object-position: right;
   margin: auto;
 }
 

@@ -42,33 +42,43 @@
       <app-cart-button></app-cart-button>
     </mat-toolbar>
 
-<div style="width: 100%">
 
-    <mat-form-field >
-      <mat-label>Sorteaza produsele</mat-label>
-      <mat-select  [(ngModel)]="selectedGenre">
-        <mat-option value="BARBATI">Pentru el</mat-option>
-        <mat-option value="FEMEI">Pentru ea</mat-option>
-        <mat-option value="ALL">Pentru toti</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-  <button (click)="onGenre(selectedGenre)">Submit</button>
-</div>
+    <div style="width: 100%">
+      <div class="routes-div">
+        <p class="routes" (click)="onAccessory()">Doar Accesorii </p>
+        <p class="routes" (click)="onShoes()">Doar Shoes </p>
+        <p class="routes" (click)="onMen()">Doar pentru barbati </p>
+        <p class="routes" (click)="onWomen()">Doar pentru femei </p>
+      </div>
+    </div>
 
 
     <app-list-products [isAdmin]="false"></app-list-products>
 
+    <mat-card
+      style=" display:flex;width:100% ;object-fit: cover ;background-image: url('https://assets.gqindia.com/photos/620e52c018140d747a9b0a2a/16:9/w_2560%2Cc_limit/Lead-Image.jpg')"
+      class="buttons">
+      <mat-card-header
+        style="margin-bottom: 20px;margin-left:auto; margin-right:auto; font-family: 'Thasadith', sans-serif; font-size:36px;font-weight: 700;">
+        Urmareste-ne pe social media
+      </mat-card-header>
+
+      <mat-card-content style="gap: 250px;margin:auto; display: grid;grid-template-columns: repeat(3,1fr);">
+        <img class="social-icons" src="assets/insta.png" (click)="window.location.href='https://www.instagram.com'">
+        <img class="social-icons" src="assets/fb.png" (click)="window.location.href='https://www.facebook.com'">
+        <img class="social-icons" src="assets/x.png" (click)="window.location.href='https://www.x.com'">
+
+      </mat-card-content>
+    </mat-card>
 
 
     <div style="display:flex ; width:100%" class="div-landing">
-      <app-carousel class="p2"> </app-carousel>
+      <app-carousel class="p2"></app-carousel>
     </div>
 
 
-<app-footer></app-footer>
+    <app-footer></app-footer>
   </div>
-
 
 
 </mat-drawer-container>
